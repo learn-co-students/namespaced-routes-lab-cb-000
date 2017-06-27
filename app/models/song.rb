@@ -9,4 +9,6 @@ class Song < ActiveRecord::Base
     artist = Artist.find_or_create_by(name: name)
     self.artist = artist
   end
+
+  default_scope { order(title: Preference.artist_sort_order) }
 end
