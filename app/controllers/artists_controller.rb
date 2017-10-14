@@ -8,17 +8,28 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    @artist = Artist.new
+    if Preference.exists?(:allow_create_artists => false )
+      redirect_to artists_path
+    else
+      @artist = Artist.new
+    end
+
   end
 
   def create
-    @artist = Artist.new(artist_params)
 
-    if @artist.save
-      redirect_to @artist
+    if Preference.exists?(:allow_create_artists)
+      redirect_to artists_path
     else
-      render :new
+      @artist = Artist.new(artist_params)
+
+      if @artist.save
+        redirect_to @artist
+      else
+        render :new
+      end
     end
+
   end
 
   def edit
@@ -49,4 +60,6 @@ class ArtistsController < ApplicationController
   def artist_params
     params.require(:artist).permit(:name)
   end
+
+
 end
