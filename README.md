@@ -1,3 +1,50 @@
+tests
+
+These tests all require understanding constant Preference
+[0/1] rspec spec/controllers/admin/preferences_controller_spec.rb
+[0/1] rspec spec/controllers/artists_controller_spec.rb
+[6/7] rspec spec/controllers/songs_controller_spec.rb
+
+[0/2] rspec spec/features/artists_spec.rb
+[0/8] rspec spec/features/songs_spec.rb
+
+[0/3] rspec spec/helpers/artists_helper_spec.rb
+
+[] rspec spec/models/preference_spec.rb <-- NameError Preference
+[0/3] rspec spec/models/song_spec.rb
+
+[3/3] rspec spec/routing/artists_routing_spec.rb
+[0/1] rspec spec/routing/preferences_routing_spec.rb <-- might be easy
+
+[1/1] rspec spec/views/songs/index.html.erb_spec.rb
+[1/1] rspec spec/views/songs/show.html.erb_spec.rb
+
+Gameplan:
+Routing
+Models
+Controllers
+Helpers
+
+rails g resource Preference artist_sort_order:string song_sort_order:string allow_create_artists:boolean allow_create_songs:boolean --no-test-framework
+
+After rails g, 4 tests remaining?
+Admin::PreferencesController has an index page  <-- add route
+ArtistsController GET new redirects when access is turned off  <-- if boolean, redirect
+SongsController GET new redirects when access is turned off  <-- if boolean, redirect
+settings routing routes through admin <-- expect get: "/admin/preferences" to be routable   
+
+
+  RSpec.describe Preference, type: :model do
+    it "has the right fields" do
+      p = Preference.new(artist_sort_order: "DESC", song_sort_order: "ASC", allow_create_artists: false, allow_create_songs: true)
+      expect(p.artist_sort_order.class).to eq String
+      expect(p.song_sort_order.class).to eq String
+      expect(p.allow_create_artists).to eq false
+      expect(p.allow_create_songs).to eq true
+    end
+  end
+
+
 # Namespaced Routes Lab
 
 ## Objectives
