@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   end
   resources :songs
 
+  namespace :admin do
+    resources :preferences, only: %i(index create)
+  end
+
 end
