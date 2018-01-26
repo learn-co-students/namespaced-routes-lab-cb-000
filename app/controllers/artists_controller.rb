@@ -8,8 +8,21 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    @artist = Artist.new
+    if Preference.first.allow_create_artists == false
+      redirect_to artists_path
+    else
+      @artist = Artist.new
+    end
   end
+
+
+  # #   describe "GET new" do
+  #     it "redirects when access is turned off" do
+  #       p = Preference.create(allow_create_artists: false)
+  #       get :new
+  #       expect(response).to redirect_to artists_path
+  #     end
+  #   end
 
   def create
     @artist = Artist.new(artist_params)
