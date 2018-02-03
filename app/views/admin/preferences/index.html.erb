@@ -1,0 +1,20 @@
+<%=form_for(@preference, url: admin_preferences_path) do |f|%>
+  <%=f.label :song_sort_order, value: "Song sort order:" %>
+  <%=f.select :song_sort_order, options_for_select([["Descending", "DESC"], ["Ascending", "ASC"]])%><br>
+
+  <%=f.label :artist_sort_order, value: "Artist sort order:"%>
+  <%=f.select :artist_sort_order, options_for_select([["Descending", "DESC"], ["Ascending", "ASC"]])%><br>
+
+  <h3>Create Song:</h3>
+  <%=f.fields_for(@song) do |song|%>
+    <%=song.label :title, value: "Song title:"%>
+    <%=song.text_field :title %><br>
+  <%end%>
+
+  <h3>Create Artist:</h3>
+  <%=f.fields_for(@artist) do |song|%>
+    <%=song.label :name, value: "Artist name:"%>
+    <%=song.text_field :name %><br>
+  <%end%><br>
+  <%=f.submit value: "Update Preferences"%>
+<%end%>
