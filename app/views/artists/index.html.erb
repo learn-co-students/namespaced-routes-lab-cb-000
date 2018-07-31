@@ -1,3 +1,9 @@
+<% if Preference.exists?(:artist_sort_order => "ASC") %>
+  <%= @artists.order(:name) %>
+<% elsif Preference.exists?(:artist_sort_order => "DESC") %>
+  <%= @artists.order(name: :desc) %>
+<% end %>
+
 <h1>Artists</h1>
 <ul>
   <% @artists.each do |artist| %>
