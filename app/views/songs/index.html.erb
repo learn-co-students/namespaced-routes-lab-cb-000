@@ -1,3 +1,9 @@
+<% if Preference.exists?(:song_sort_order => "ASC") %>
+  <%= @songs.order(:title) %>
+<% elsif Preference.exists?(:song_sort_order => "DESC") %>
+  <%= @songs.order(title: :desc) %>
+<% end %>
+
 <ul>
 <% @songs.each do |song| %>
   <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
