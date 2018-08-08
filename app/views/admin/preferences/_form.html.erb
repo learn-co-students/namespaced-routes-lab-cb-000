@@ -1,0 +1,24 @@
+<%= form_for preference, url: admin_preference_path(preference)  do |f| %>
+
+  <%= content_tag :h3, "Artist Settings" %>
+  <%= f.label :allow_create_artists %>
+  <%= f.check_box :allow_create_artists %><br>
+  <br>
+  <%= content_tag :strong, "Artist Sort Order" %><br>
+  <%= f.label :artist_sort_order_desc, "Descending" %>
+  <%= f.radio_button :artist_sort_order, "DESC" %>
+  <%= f.label :artist_sort_order_asc, "Ascending" %>
+  <%= f.radio_button :artist_sort_order, "ASC" %><br>
+
+  <%= content_tag :h3, "Song Settings" %>
+  <%= f.label :allow_create_songs %>
+  <%= f.check_box :allow_create_songs %><br>
+  <br>
+  <%= content_tag :strong, "Song Sort Order" %><br>
+  <%= f.label :song_sort_order_desc, "Descending" %>
+  <%= f.radio_button :song_sort_order, "DESC" %>
+  <%= f.label :song_sort_order_asc, "Ascending" %>
+  <%= f.radio_button :song_sort_order, "ASC" %><br>
+  <br>
+  <%= f.submit %>
+<% end %>
