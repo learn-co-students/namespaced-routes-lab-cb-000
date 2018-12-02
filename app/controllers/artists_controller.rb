@@ -1,8 +1,14 @@
 class ArtistsController < ApplicationController
 
   def index
-    preference = Preference.last.artist_sort_order
-    @artists = Artist.in_order(preference)
+    #preference = Preference.last.artist_sort_order
+
+      #if preference.nil?
+        @artists = Artist.all
+      #else
+        #@artists = Artist.in_order(preference)
+      #end
+
   end
 
   def show
