@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+
+
   def index
     if params[:artist_id]
       @artist = Artist.find_by(id: params[:artist_id])
@@ -8,7 +10,10 @@ class SongsController < ApplicationController
         @songs = @artist.songs
       end
     else
+      #preference = Preference.last.song_sort_order
+      #@songs = Song.in_order(preference)
       @songs = Song.all
+
     end
   end
 
@@ -25,7 +30,13 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+
+    if Preference.last.allow_create_songs
+      @song = Song.new
+    else
+      redirect_to songs_path
+    end
+    
   end
 
   def create
