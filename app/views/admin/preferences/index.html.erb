@@ -1,0 +1,8 @@
+<h1>System Preferences</h1>
+<ul>
+  <li>Artists Sorting Order: <%= pref_order_helper(@prefs, 'artists') %></li>
+  <li>Songs Sorting Order: <%= pref_order_helper(@prefs, 'songs') %></li>
+  <li>Create New Artists: <%= @prefs.allow_create_artists ? 'Enabled' : 'Disabled' %></li>
+  <li>Create New Songs: <%= @prefs.allow_create_songs ? 'Enabled' : 'Disabled' %></li>
+</ul><br>
+<%= link_to "Edit Preferences", edit_admin_preference_path(@prefs) %>
