@@ -14,7 +14,7 @@ them separate from the regular user functions.
 
 ## Instructions
 
-The base application has been provided with tests. Make sure to run
+The base application has been provided with tests. Make sure to runs
 `rake db:seed` to set up seed data. Tests can be run with `rspec`.
 
 **Note:** Since we're building new features on an existing project that
