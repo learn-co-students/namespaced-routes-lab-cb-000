@@ -8,7 +8,13 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    @artist = Artist.new
+   
+   if Preference.first.allow_create_artists
+      @artist = Artist.new
+    else
+      redirect_to artists_path, alert: "You're not allowed to create artists."
+    end
+   
   end
 
   def create
